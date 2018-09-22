@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 EXPOSE 8332 8333
 
 # Compile Bitcoin, uninstall dev packages after compilation
-ARG VERSION=v0.16.2
+ARG VERSION=v0.16.3
 ARG TEMP_PACKAGES="build-essential libtool autotools-dev automake pkg-config python3 git wget ca-certificates libssl-dev libevent-dev libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-thread-dev libboost-program-options-dev"
 RUN apt-get update && \
 apt-get install -y --no-install-recommends libssl1.1 libevent-2.1-6 libevent-core-2.1-6 libevent-pthreads-2.1-6 libboost-system1.65.1 libboost-filesystem1.65.1 libboost-chrono1.65.1 libboost-thread1.65.1 libboost-program-options1.65.1 $TEMP_PACKAGES && \
