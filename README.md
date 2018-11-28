@@ -15,7 +15,7 @@ server=1
 disablewallet=1  
 rpcuser=abc  
 rpcpassword=123  
-``` 
+```
 
 In all examples we mount the `bitcoin.conf` to the bitcoin and user directory. We create a new volume called `bitcoin_data` for storing the blockchain data.
 
@@ -61,3 +61,21 @@ volumes:
 You can use the `bitcoin-cli` command within the container if you correctly set up your RPC login data in the `bitcoin.conf`. For example:
 
 ```$ docker exec bitcoind bitcoin-cli getblockcount```
+
+## Parameters ##
+
+### `make`-Processes ###
+
+To speed up the compilation process you can set the build-time variable `MAKE_JOBS` to the number of CPU cores that are available. 
+
+When using `docker build` the command could look like this:  
+`docker build --build-arg MAKE_JOBS=4 -t bitcoin-compiled .`
+
+When using Docker Compose you can replace the `build:`-line with the following:  
+
+```
+build:
+  context:  https://github.com/MorbZ/docker-bitcoin-compiled.git
+  args:
+    MAKE_JOBS: 4
+```
