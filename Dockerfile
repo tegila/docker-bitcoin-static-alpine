@@ -1,13 +1,13 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 EXPOSE 8332 8333
 
 # Compile Bitcoin, uninstall dev packages after compilation
-ARG VERSION=v0.17.1
+ARG VERSION=v0.21.0
 ARG MAKE_JOBS=1
 ARG TEMP_PACKAGES="build-essential libtool autotools-dev automake pkg-config python3 git wget ca-certificates libssl-dev libevent-dev libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-thread-dev libboost-program-options-dev"
 RUN apt-get update && \
-apt-get install -y --no-install-recommends libssl1.1 libevent-2.1-6 libevent-core-2.1-6 libevent-pthreads-2.1-6 libboost-system1.65.1 libboost-filesystem1.65.1 libboost-chrono1.65.1 libboost-thread1.65.1 libboost-program-options1.65.1 $TEMP_PACKAGES && \
+apt-get install -y --no-install-recommends libssl1.1 libevent-2.1-7 libevent-core-2.1-7 libevent-pthreads-2.1-7 libboost-system1.71.0 libboost-filesystem1.71.0 libboost-chrono1.71.0 libboost-thread1.71.0 libboost-program-options1.71.0 $TEMP_PACKAGES && \
 cd /usr/src/ && git clone https://github.com/bitcoin/bitcoin.git && \
 cd bitcoin && git checkout $VERSION && \
 ./contrib/install_db4.sh `pwd` && \
